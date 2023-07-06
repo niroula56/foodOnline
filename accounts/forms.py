@@ -19,7 +19,7 @@ class UserForm(forms.ModelForm):
 
 
 class UserProfileForm(forms.ModelForm):
-    address = forms.CharField(widget=forms.TextInput(attrs={'placeholder': "start typing...", "required": "required"}))
+    address = forms.CharField(widget=forms.TextInput(attrs={"required": "required"}))
     profile_picture = forms.FileField(widget=forms.FileInput(attrs={
         "class": "btn btn-info",
     }), validators=[allow_only_images_validator])
@@ -34,8 +34,8 @@ class UserProfileForm(forms.ModelForm):
         model = UserProfile
         fields = ['profile_picture', 'cover_photo', "address","country", "state", "city", "pin_code", "latitude", "longitude"]
 
-    def __init__(self, *args, **kwargs):
-        super(UserProfileForm, self).__init__(*args, **kwargs)
-        for field in self.fields:
-            if field == "latitude" or field == "longitude":
-                self.fields[field].widget.attrs['readonly'] = "readonly"   
+    # def __init__(self, *args, **kwargs):
+    #     super(UserProfileForm, self).__init__(*args, **kwargs)
+    #     for field in self.fields:
+    #         if field == "latitude" or field == "longitude":
+    #             self.fields[field].widget.attrs['readonly'] = "readonly"   
